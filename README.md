@@ -58,16 +58,16 @@ dependency = await replaceEsm(
 )
 ```
 
-[example]: ./example
+[example]: https://github.com/mcous/testdouble-vitest/tree/main/example
 
 ## Usage with `vi.mock`
 
 If you prefer to use `vi.mock()` at the top level of your test files, but you would still like to use [testdouble.js] fakes, you can use this module's `imitateEsm()` function. Compared to the recommended usage, using `vi.mock`:
 
-- Slightly increases the risk of cross-test module state polution
+- Slightly increases the risk of cross-test module state pollution
 - Does not differentiate `import` statements for mocked modules and actual `imports`
 
-These tradeoffs might be worth it if you or your team is more comfortable with the typiccal `jest.mock()` / `vi.mock()` style.
+These tradeoffs might be worth it if you or your team is more comfortable with the typical `jest.mock()` / `vi.mock()` style.
 
 ```ts
 import { vi, describe, beforeEach, afterEach, it } from 'vitest'

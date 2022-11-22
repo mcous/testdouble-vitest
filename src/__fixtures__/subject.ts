@@ -1,13 +1,13 @@
-import doSomethindDefault, { doSomething, nested } from './dependency'
+import doSomethingDefault, { doSomething, nested } from './dependency'
 
 export function doSomethingViaDependency(inputValue: string): string {
   return doSomething(inputValue)
 }
 
 export function doSomethingDefaultViaDependency(inputValue: string): string {
-  return doSomethindDefault(inputValue)
+  return doSomethingDefault(inputValue)
 }
 
-export function doSomethingNestedViaDepedency(inputValue: string): string {
+export function doSomethingNestedViaDependency(inputValue: string): string {
   return nested.doSomethingNested(inputValue)
 }

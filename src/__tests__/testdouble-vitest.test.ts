@@ -39,7 +39,7 @@ describe('testdouble-vitest replace', () => {
 
     td.when(dependency.nested.doSomethingNested('hello')).thenReturn('world')
 
-    expect(subject.doSomethingNestedViaDepedency('hello')).to.equal('world')
+    expect(subject.doSomethingNestedViaDependency('hello')).to.equal('world')
     expect(td.explain(dependency.nested.doSomethingNested).name).to.equal(
       '../__fixtures__/dependency: .nested.doSomethingNested'
     )
