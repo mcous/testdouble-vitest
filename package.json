@@ -1,0 +1,76 @@
+{
+  "name": "testdouble-vitest",
+  "version": "0.0.0",
+  "description": "Use testdouble.js with vitest for a happier, more productive TDD experience.",
+  "type": "module",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "import": "./dist/testdouble-vitest.js"
+  },
+  "types": "./lib/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "!**/__tests__/**",
+    "!**/__fixtures__/**"
+  ],
+  "scripts": {
+    "all": "pnpm clean && concurrently -g pnpm:format:check pnpm:lint pnpm:test:once pnpm:build",
+    "check": "concurrently -g pnpm:format:check pnpm:lint pnpm:test:once",
+    "test": "vitest",
+    "test:once": "vitest --run",
+    "build": "concurrently -g pnpm:build:*",
+    "build:package": "vite build",
+    "build:types": "tsc",
+    "build:types:example": "tsc --project example/tsconfig.json",
+    "clean": "rimraf dist lib",
+    "lint": "eslint vite.config.ts \"@(src|example)/**/*.ts\"",
+    "format": "prettier --write \"**/*.@(ts|json|md|yaml)\"",
+    "format:check": "prettier --check \"**/*.@(ts|json|md|yaml)\""
+  },
+  "keywords": [
+    "mock"
+  ],
+  "author": "Michael Cousins <mike@cousins.io> (https://mike.cousins.io)",
+  "license": "MIT",
+  "peerDependencies": {
+    "testdouble": "^3.16.0",
+    "vitest": "^0.25.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
+    "concurrently": "^7.6.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "testdouble": "^3.16.8",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.4",
+    "vitest": "^0.25.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard-with-typescript",
+      "prettier"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.eslint.json",
+      "warnOnUnsupportedTypeScriptVersion": false
+    }
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
+  }
+}

@@ -1,0 +1,6 @@
+# prettier ignore
+.vscode
+package.json
+pnpm-lock.yaml
+dist
+lib
