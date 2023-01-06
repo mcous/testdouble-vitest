@@ -84,10 +84,8 @@ async function imitateModuleByPath(
 
 function unwrapModuleProxy(
   object: any,
-  unwrappedObjects?: Map<object, any>
+  unwrappedObjects = new Map<object, any>()
 ): any {
-  unwrappedObjects ??= new Map<object, any>()
-
   if (
     typeof object === 'object' &&
     object !== null &&

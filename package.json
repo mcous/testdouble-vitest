@@ -33,6 +33,7 @@
   ],
   "author": "Michael Cousins <mike@cousins.io> (https://mike.cousins.io)",
   "license": "MIT",
+  "packageManager": "pnpm@7.22.0",
   "peerDependencies": {
     "testdouble": "^3.16.0",
     "vitest": ">=0.25.0 <1.0.0"
