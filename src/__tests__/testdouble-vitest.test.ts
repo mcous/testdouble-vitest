@@ -109,5 +109,7 @@ describe('testdouble-vitest replace', () => {
 
     expect(imitated.doA()).to.equal(42)
     expect(imitated.b.doB()).to.equal(84)
+    expect(imitated.b.a.doA()).to.equal(42)
+    expect(imitated.b.a.b.doB()).to.equal(84)
   })
 })
