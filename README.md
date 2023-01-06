@@ -1,5 +1,8 @@
 # testdouble-vitest
 
+[![npm package][npm badge]][npm package]
+[![CI Status][ci badge]][ci status]
+
 Use [testdouble.js] with [vitest] for a happier, more productive TDD experience!
 
 This module ties vitest's [import mocking system] together with [td.imitate] to give you a version of [td.replaceEsm] that works in vitest.
@@ -9,6 +12,10 @@ This module ties vitest's [import mocking system] together with [td.imitate] to 
 [td.replaceesm]: https://github.com/testdouble/testdouble.js#tdreplace-and-tdreplaceesm-for-replacing-dependencies
 [vitest]: https://vitest.dev
 [import mocking system]: https://vitest.dev/guide/mocking.html#modules
+[npm package]: https://www.npmjs.com/package/testdouble-vitest
+[npm badge]: https://img.shields.io/npm/v/testdouble-vitest?style=flat-square
+[ci status]: https://github.com/mcous/testdouble-vitest/actions/workflows/ci.yaml?query=branch%3Amain
+[ci badge]: https://img.shields.io/github/actions/workflow/status/mcous/testdouble-vitest/ci.yaml?branch=main&style=flat-square
 
 ## Setup
 
