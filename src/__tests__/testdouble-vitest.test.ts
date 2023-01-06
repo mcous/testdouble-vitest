@@ -47,6 +47,7 @@ describe('testdouble-vitest replace', () => {
 
   it('should allow manual named export replacement', async () => {
     const doSomething = td.func('doSomething')
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
     const replaceResult = await replaceEsm('../__fixtures__/dependency', {
       doSomething,
     })
@@ -61,6 +62,7 @@ describe('testdouble-vitest replace', () => {
 
   it('should allow manual default export replacement', async () => {
     const doSomethingDefault = td.func('doSomethingDefault')
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
     const replaceResult = await replaceEsm(
       '../__fixtures__/dependency',
       undefined,
@@ -90,14 +92,22 @@ describe('testdouble-vitest replace', () => {
   })
 
   it('should imitate a module by path without mocking the import', async () => {
-    const imitatedDependency = await imitateEsm('../__fixtures__/dependency')
-    const actualDependency = await import('../__fixtures__/dependency')
+    const imitated = await imitateEsm('../__fixtures__/dependency')
+    const actual = await import('../__fixtures__/dependency')
 
-    td.when(imitatedDependency.doSomething('hello')).thenReturn('world')
+    td.when(imitated.doSomething('hello')).thenReturn('world')
 
-    expect(imitatedDependency.doSomething('hello')).to.equal('world')
-    expect(() => actualDependency.doSomething('hello')).to.throw(
-      /not implemented/
-    )
+    expect(imitated.doSomething('hello')).to.equal('world')
+    expect(() => actual.doSomething('hello')).to.throw(/not implemented/)
+  })
+
+  it('should imitate circular dependencies', async () => {
+    const imitated = await imitateEsm('../__fixtures__/circular-dependency-a')
+
+    td.when(imitated.doA()).thenReturn(42)
+    td.when(imitated.b.doB()).thenReturn(84)
+
+    expect(imitated.doA()).to.equal(42)
+    expect(imitated.b.doB()).to.equal(84)
   })
 })

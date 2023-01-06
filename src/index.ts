@@ -82,22 +82,33 @@ async function imitateModuleByPath(
   return td.imitate<any>(spec, name)
 }
 
-function unwrapModuleProxy(object: any): any {
+function unwrapModuleProxy(
+  object: any,
+  unwrappedObjects?: Map<object, any>
+): any {
+  unwrappedObjects ??= new Map<object, any>()
+
   if (
     typeof object === 'object' &&
     object !== null &&
     object[Symbol.toStringTag] === 'Module'
   ) {
-    const properties = Object.getOwnPropertyDescriptors(object)
-    const unwrapped = Object.create(null)
+    let unwrapped = unwrappedObjects.get(object)
 
-    for (const [name, descriptor] of Object.entries(properties)) {
-      const value =
-        typeof descriptor.get === 'function'
-          ? descriptor.get()
-          : descriptor.value
+    if (unwrapped === undefined) {
+      unwrapped = Object.create(null)
+      unwrappedObjects.set(object, unwrapped)
 
-      unwrapped[name] = unwrapModuleProxy(value)
+      const properties = Object.getOwnPropertyDescriptors(object)
+
+      for (const [name, descriptor] of Object.entries(properties)) {
+        const value =
+          typeof descriptor.get === 'function'
+            ? descriptor.get()
+            : descriptor.value
+
+        unwrapped[name] = unwrapModuleProxy(value, unwrappedObjects)
+      }
     }
 
     return unwrapped
