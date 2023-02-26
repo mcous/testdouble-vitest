@@ -2,10 +2,14 @@ import { beforeEach, afterEach, describe, it, expect } from 'vitest'
 import { replaceEsm, reset } from 'testdouble-vitest'
 import * as td from 'testdouble'
 
+import type * as dataLoaderModule from './load-report-data'
+import type * as reportGeneratorModule from './generate-report'
+import type * as subjectModule from './get-report'
+
 describe('getting a report', () => {
-  let dataLoader: typeof import('./load-report-data')
-  let reportGenerator: typeof import('./generate-report')
-  let subject: typeof import('./get-report')
+  let dataLoader: typeof dataLoaderModule
+  let reportGenerator: typeof reportGeneratorModule
+  let subject: typeof subjectModule
 
   beforeEach(async () => {
     dataLoader = await replaceEsm('./load-report-data')

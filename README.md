@@ -52,9 +52,12 @@ import { vi, describe, beforeEach, afterEach, it } from 'vitest'
 import { replaceEsm, reset } from 'testdouble-vitest'
 import * as td from 'testdouble'
 
+import type * as dependencyModule from '../dependency'
+import type * as subjectModule from '../subject'
+
 describe('collaborator subject', () => {
-  let dependency: typeof import('../dependency')
-  let subject: typeof import('../subject')
+  let dependency: typeof dependencyModule
+  let subject: typeof subjectModule
 
   beforeEach(async () => {
     dependency = await replaceEsm('../dependency')
