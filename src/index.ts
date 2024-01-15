@@ -5,7 +5,7 @@ const needsUnmock = new Set<string>()
 let quibbleInitialized = false
 
 export async function replaceEsm<
-  ModuleType = { default?: any; [exportName: string]: any }
+  ModuleType = { default?: any; [exportName: string]: any },
 >(path: string): Promise<ModuleType>
 
 export async function replaceEsm(
@@ -83,12 +83,13 @@ async function imitateModuleByPath(
 }
 
 function unwrapModuleProxy(
-  object: any,
+  object: unknown,
   unwrappedObjects = new Map<object, any>()
 ): any {
   if (
     typeof object === 'object' &&
     object !== null &&
+    Symbol.toStringTag in object &&
     object[Symbol.toStringTag] === 'Module'
   ) {
     let unwrapped = unwrappedObjects.get(object)
