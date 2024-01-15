@@ -1,6 +1,6 @@
 {
   "name": "testdouble-vitest",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Use testdouble.js with vitest for a happier, more productive TDD experience.",
   "type": "module",
   "exports": {
