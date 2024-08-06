@@ -7,15 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['16', '18', '20']
+        node-version: ['18', '20', '22']
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: mcous/js/actions/setup@0cd164c7923f0cacb1fe4db257a7555afd7cdfdf
         with:
           node-version: ${{ matrix.node-version }}
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
       - run: pnpm check
 
   build:
@@ -23,14 +20,11 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: mcous/js/actions/setup@0cd164c7923f0cacb1fe4db257a7555afd7cdfdf
         with:
-          node-version: '18'
+          node-version: '20'
           registry-url: https://registry.npmjs.org/
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - name: 'Publish to npm'
         if: startsWith(github.ref, 'refs/tags/v')
