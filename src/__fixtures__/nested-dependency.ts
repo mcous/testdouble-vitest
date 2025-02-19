@@ -1,3 +1,3 @@
 export function doSomethingNested(inputValue: string): string {
-  throw new Error('not implemented')
+  throw new Error(`doSomethingNested(${inputValue}) not implemented`)
 }

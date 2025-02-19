@@ -1,5 +1,5 @@
-import { vi } from 'vitest'
 import * as td from 'testdouble'
+import { vi } from 'vitest'
 
 const needsUnmock = new Set<string>()
 let quibbleInitialized = false
@@ -11,13 +11,13 @@ export async function replaceEsm<
 export async function replaceEsm(
   path: string,
   namedExportStubs?: Record<string, any>,
-  defaultExportStub?: any
+  defaultExportStub?: any,
 ): Promise<void>
 
 export async function replaceEsm(
   path: string,
   namedExportStubs?: Record<string, any>,
-  defaultExportStub?: any
+  defaultExportStub?: any,
 ): Promise<any> {
   const absolutePath = getAbsoluteModulePath(path)
   let imitation: any
@@ -74,7 +74,7 @@ function getAbsoluteModulePath(path: string): string {
 
 async function imitateModuleByPath(
   absolutePath: string,
-  name: string
+  name: string,
 ): Promise<any> {
   const actualProxy: any = await vi.importActual(absolutePath)
   const spec = unwrapModuleProxy(actualProxy)
@@ -84,7 +84,7 @@ async function imitateModuleByPath(
 
 function unwrapModuleProxy(
   object: unknown,
-  unwrappedObjects = new Map<object, any>()
+  unwrappedObjects = new Map<object, any>(),
 ): any {
   if (
     typeof object === 'object' &&

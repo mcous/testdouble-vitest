@@ -1,0 +1,13 @@
+dictionaries = []
+words = [
+    "esm",
+    "mcous",
+    "rimraf",
+    "testdouble",
+    "tsc",
+    "vite",
+    "vitest",
+]
+flag_words = []
+ignore_paths = []
+ignore_patterns = []

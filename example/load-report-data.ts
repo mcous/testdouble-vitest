@@ -3,5 +3,5 @@ export interface ReportData {
 }
 
 export async function loadReportData(id: string): Promise<ReportData> {
-  throw new Error('not implemented')
+  throw new Error(`loadReportData(${id}) not implemented`)
 }
