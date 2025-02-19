@@ -24,54 +24,32 @@
     "build:types": "tsc",
     "build:types:example": "tsc --project example/tsconfig.json",
     "clean": "rimraf dist lib",
-    "lint": "eslint vite.config.ts \"@(src|example)/**/*.ts\"",
-    "format": "prettier --write \"**/*.@(ts|json|md|yaml)\"",
-    "format:check": "prettier --check \"**/*.@(ts|json|md|yaml)\""
+    "lint": "eslint .",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "keywords": [
     "mock"
   ],
   "author": "Michael Cousins <mike@cousins.io> (https://mike.cousins.io)",
   "license": "MIT",
-  "packageManager": "pnpm@8.14.1+sha256.2df78e65d433d7693b9d3fbdaf431b2d96bb4f96a2ffecd51a50efe16e50a6a8",
+  "packageManager": "pnpm@10.4.1+sha256.4b702887986995933d4300836b04d6d02a43bc72b52e4f7e93a4ca608b959197",
   "peerDependencies": {
     "testdouble": "^3.16.0",
-    "vitest": ">=0.25.0 <3.0.0"
+    "vitest": ">=1 <4"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
-    "concurrently": "^8.2.2",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-config-standard-with-typescript": "^43.0.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.1.1",
-    "prettier": "^3.2.2",
-    "rimraf": "^5.0.5",
-    "testdouble": "^3.20.2",
-    "typescript": "^5.3.3",
-    "vite": "^5.3.5",
-    "vitest": "^2.0.5"
-  },
-  "eslintConfig": {
-    "extends": [
-      "standard-with-typescript",
-      "prettier"
-    ],
-    "parserOptions": {
-      "project": "./tsconfig.eslint.json",
-      "warnOnUnsupportedTypeScriptVersion": false
-    }
-  },
-  "prettier": {
-    "tabWidth": 2,
-    "useTabs": false,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "bracketSpacing": true,
-    "arrowParens": "avoid"
+    "@mcous/eslint-config": "^0.5.1",
+    "@mcous/prettier-config": "^0.4.0",
+    "@mcous/typescript-config": "^0.3.0",
+    "@types/node": "^22.13.4",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.20.1",
+    "prettier": "^3.5.1",
+    "rimraf": "^6.0.1",
+    "testdouble": "^3.16.8",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.1",
+    "vitest": "^3.0.6"
   }
 }

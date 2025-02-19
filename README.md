@@ -3,14 +3,15 @@
 [![npm package][npm badge]][npm package]
 [![CI Status][ci badge]][ci status]
 
-Use [testdouble.js] with [vitest] for a happier, more productive TDD experience!
+Use [testdouble.js] with [Vitest] for a happier, more productive TDD experience!
 
-This module ties vitest's [import mocking system] together with [td.imitate] to give you a version of [td.replaceEsm] that works in vitest.
+This module ties Vitest's [import mocking system] together with [td.imitate] to give you a version of [td.replaceEsm] that works in vitest.
 
 [testdouble.js]: https://github.com/testdouble/testdouble.js
 [td.imitate]: https://github.com/testdouble/testdouble.js#tdimitate
 [td.replaceesm]: https://github.com/testdouble/testdouble.js#tdreplace-and-tdreplaceesm-for-replacing-dependencies
 [vitest]: https://vitest.dev
+[vitest-when]: https://github.com/mcous/vitest-when
 [import mocking system]: https://vitest.dev/guide/mocking.html#modules
 [npm package]: https://www.npmjs.com/package/testdouble-vitest
 [npm badge]: https://img.shields.io/npm/v/testdouble-vitest?style=flat-square
@@ -23,20 +24,6 @@ Install vitest, testdouble, and testdouble-vitest using your package manager of 
 
 ```shell
 npm install --save-dev vitest testdouble testdouble-vitest
-```
-
-...then configure vitest to inline the testdouble-vitest dependency...
-
-```ts
-import { defineConfig } from 'vitest/config'
-
-export default defineConfig({
-  test: {
-    deps: {
-      inline: ['testdouble-vitest'],
-    },
-  },
-})
 ```
 
 ..and you should be ready to go!
@@ -84,7 +71,7 @@ Like vanilla `td.replaceEsm()`, this module's `replaceEsm()` also allows you to 
 dependency = await replaceEsm(
   '../dependency',
   { doSomething: td.func('doSomething') }, // named exports object
-  td.func('defaultExport') // default export
+  td.func('defaultExport'), // default export
 )
 ```
 
@@ -98,6 +85,10 @@ If you prefer to use `vi.mock()` at the top level of your test files, but you wo
 - Does not differentiate `import` statements for mocked modules and real imports
 
 These tradeoffs might be worth it if you or your team is more comfortable with the typical `jest.mock()` / `vi.mock()` style.
+
+> [!TIP]
+> For a lightweight `td.when`-style stubbing syntax with vanilla Vitest mocks,
+> check out [vitest-when]
 
 ```ts
 import { vi, describe, beforeEach, afterEach, it } from 'vitest'

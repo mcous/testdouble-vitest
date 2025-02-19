@@ -1,10 +1,10 @@
-import { beforeEach, afterEach, describe, it, expect } from 'vitest'
-import { replaceEsm, reset } from 'testdouble-vitest'
 import * as td from 'testdouble'
+import { replaceEsm, reset } from 'testdouble-vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
-import type * as dataLoaderModule from './load-report-data'
 import type * as reportGeneratorModule from './generate-report'
 import type * as subjectModule from './get-report'
+import type * as dataLoaderModule from './load-report-data'
 
 describe('getting a report', () => {
   let dataLoader: typeof dataLoaderModule

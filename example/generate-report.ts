@@ -6,5 +6,5 @@ export interface Report {
 }
 
 export function generateReport(data: ReportData): Report {
-  throw new Error('not implemented')
+  throw new Error(`generateReport(${JSON.stringify(data)}) not implemented`)
 }

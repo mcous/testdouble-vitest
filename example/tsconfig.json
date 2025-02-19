@@ -1,6 +1,9 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "@mcous/typescript-config/base.json",
   "compilerOptions": {
+    "target": "es2021",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "baseUrl": ".",
     "paths": {

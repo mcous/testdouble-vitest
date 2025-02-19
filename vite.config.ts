@@ -1,7 +1,8 @@
-import * as path from 'node:path'
+import path from 'node:path'
+
 import { defineConfig } from 'vitest/config'
 
-import pkg from './package.json'
+import packageMeta from './package.json'
 
 export default defineConfig({
   build: {
@@ -10,12 +11,12 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      external: Object.keys(pkg.peerDependencies),
+      external: Object.keys(packageMeta.peerDependencies),
     },
   },
   test: {
     alias: {
-      'testdouble-vitest': path.join(__dirname, 'src/index.ts'),
+      'testdouble-vitest': path.join(import.meta.dirname, './src/index.ts'),
     },
   },
 })

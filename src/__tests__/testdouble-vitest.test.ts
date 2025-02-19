@@ -1,7 +1,7 @@
-import { describe, afterEach, it, expect } from 'vitest'
 import * as td from 'testdouble'
+import { afterEach, describe, expect, it } from 'vitest'
 
-import { replaceEsm, imitateEsm, reset } from '..'
+import { imitateEsm, replaceEsm, reset } from '..'
 
 describe('testdouble-vitest replace', () => {
   afterEach(() => {
@@ -17,7 +17,7 @@ describe('testdouble-vitest replace', () => {
     expect(dependency.SOME_CONSTANT).to.equal(42)
     expect(subject.doSomethingViaDependency('hello')).to.equal('world')
     expect(td.explain(dependency.doSomething).name).to.equal(
-      '../__fixtures__/dependency: .doSomething'
+      '../__fixtures__/dependency: .doSomething',
     )
   })
 
@@ -29,7 +29,7 @@ describe('testdouble-vitest replace', () => {
 
     expect(subject.doSomethingDefaultViaDependency('hello')).to.equal('world')
     expect(td.explain(dependency.default).name).to.equal(
-      '../__fixtures__/dependency: .default'
+      '../__fixtures__/dependency: .default',
     )
   })
 
@@ -41,7 +41,7 @@ describe('testdouble-vitest replace', () => {
 
     expect(subject.doSomethingNestedViaDependency('hello')).to.equal('world')
     expect(td.explain(dependency.nested.doSomethingNested).name).to.equal(
-      '../__fixtures__/dependency: .nested.doSomethingNested'
+      '../__fixtures__/dependency: .nested.doSomethingNested',
     )
   })
 
@@ -66,7 +66,7 @@ describe('testdouble-vitest replace', () => {
     const replaceResult = await replaceEsm(
       '../__fixtures__/dependency',
       undefined,
-      doSomethingDefault
+      doSomethingDefault,
     )
 
     const subject = await import('../__fixtures__/subject')
@@ -86,7 +86,7 @@ describe('testdouble-vitest replace', () => {
     const dependency = await import('../__fixtures__/dependency')
 
     expect(() => subject.doSomethingViaDependency('hello')).to.throw(
-      /not implemented/
+      /not implemented/,
     )
     expect(() => dependency.doSomething('hello')).to.throw(/not implemented/)
   })

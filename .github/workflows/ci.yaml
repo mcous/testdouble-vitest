@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['18', '20', '22']
+        node-version: ['20', '22']
     steps:
       - uses: actions/checkout@v4
-      - uses: mcous/js/actions/setup@0cd164c7923f0cacb1fe4db257a7555afd7cdfdf
+      - uses: mcous/js/actions/setup@5f58238fd9ec0c0de22d803153af70239bfbdc9c
         with:
           node-version: ${{ matrix.node-version }}
       - run: pnpm check
@@ -21,9 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: mcous/js/actions/setup@0cd164c7923f0cacb1fe4db257a7555afd7cdfdf
+      - uses: mcous/js/actions/setup@5f58238fd9ec0c0de22d803153af70239bfbdc9c
         with:
-          node-version: '20'
           registry-url: https://registry.npmjs.org/
       - run: pnpm build
       - name: 'Publish to npm'
